@@ -11,7 +11,7 @@
         exit;
     }
 
-    require_once __DIR__ . '/controllers/Authcontroller.php';
+    require_once __DIR__ . '/controllers/AuthController.php';
 
     // Allow only POST requests for authentication actions
     if($_SERVER['REQUEST_METHOD'] !== 'POST'){
