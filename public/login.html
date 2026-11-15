@@ -15,7 +15,7 @@ h2 {
   text-align: center;
 }
 
-input[type=text], input[type=password] {
+input[type=email], input[type=password] {
 border-radius: 16px;
 width: 100%;
 padding: 12px 20px;
@@ -101,13 +101,16 @@ float: none;
 
 <div class="container">
 <label for="email"><b>Username</b></label>
-<input type="text" placeholder="Enter Username" name="email" required>
+<input type="email" id="email" placeholder="Enter Username" name="email" required>
 
-<label for="psw"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="psw" required>
+<label for="password"><b>Password</b></label>
+<input type="password" id="password" placeholder="Enter Password" name="psw" required>
 <span class="psw">Forgot <a href="#">password?</a></span>
 
 <button type="submit">Login</button>
+
+<div id="errorMessage" role="alert"></div>
+
 <label>
 <input type="checkbox" checked="checked" name="remember"> Remember me
 </label>
