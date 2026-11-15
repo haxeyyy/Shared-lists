@@ -13,7 +13,7 @@ h2 {
   text-align: center;
 }
 
-input[type=text], input[type=password] {
+input[type=email], input[type=password] {
   border-radius: 16px;
   width: 100%;
   padding: 12px 20px;
@@ -84,14 +84,16 @@ span.psw {
   </div>
 <h2>Register</h2>
 
-<form action="../api/auth.php?action=register" method="post">
+<form id="registrationForm">
 
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="email"><b>Email</b></label>
+    <input type="email" id="email" placeholder="Enter Email" name="email" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <label for="password"><b>Password</b></label>
+    <input type="password" id="password" placeholder="Enter Password" name="psw" required>
+
+    <div id="errorMessage" role="alert"></div>
         
     <button type="submit">Register</button>
   </div>
@@ -100,6 +102,8 @@ span.psw {
     <button type="button" class="cancelbtn">Cancel</button>
   </div>
 </form>
+
+<script src="js/auth.js"></script>
 
 </body>
 </html>
