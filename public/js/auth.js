@@ -1,5 +1,10 @@
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
+const form = document.getElementById('loginForm')
+          || document.getElementById('registrationForm');
 
+if (form) {
+  const isRegistration = form.id === 'registrationForm';
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const email = document.getElementById('email').value;
@@ -8,27 +13,23 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     errorBox.textContent = '';
 
     try {
-        const response = await fetch('../api/auth.php?action=login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        });
+      const action = isRegistration ? 'register' : 'login';
 
-        const result = await response.json();
+      const response = await fetch(`../api/auth.php?action=${action}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      });
 
-        if (response.ok) {
+      const result = await response.json();
 
-            window.location.href = 'dashboard.html';
-        } else {
-
-            errorBox.textContent = result.error || 'Login failed';
-        }
+      if (response.ok) {
+        window.location.href = 'dashboard.html';
+      } else {
+        errorBox.textContent = result.error || 'Request failed';
+      }
     } catch (error) {
-        errorBox.textContent = 'Server connection error';
+      errorBox.textContent = 'Server connection error';
     }
-});
+  });
+}
