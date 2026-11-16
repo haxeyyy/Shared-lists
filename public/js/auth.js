@@ -12,19 +12,23 @@ if (form) {
     const errorBox = document.getElementById('errorMessage');
     errorBox.textContent = '';
 
+    const data = isRegistration
+      ? { name: document.getElementById('name').value, email, password }
+      : { email, password };
+
     try {
       const action = isRegistration ? 'register' : 'login';
 
       const response = await fetch(`../api/auth.php?action=${action}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify(data)
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        window.location.href = 'dashboard.html';
+        window.location.href = isRegistration ? 'login.html' : 'dashboard.html';
       } else {
         errorBox.textContent = result.error || 'Request failed';
       }
